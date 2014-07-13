@@ -51,4 +51,28 @@ coverage.xml
 
 # Sphinx documentation
 docs/_build/
+#############################add by braindevices
 
+#ignore test result and data
+test_result/
+test_data/
+
+# ignore all target directories
+target/
+
+# ignore all files ending with ~
+*~ 
+
+#ignore the eclipse config
+.settings*/
+#.settings*
+#.project
+#.cproject
+#.pydevproject #if I ignore this the project cannot be import
+
+#ignore the buildpath
+Debug
+Release
+#ignore the python binary
+*.pyc
+*.pyo
