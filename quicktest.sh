@@ -8,8 +8,9 @@ export TMPDIR
 python -c "import sys; print sys.executable" | tee -a ${logFile}
 echo "OMP_NUM_THREADS = ${OMP_NUM_THREADS}" | tee -a ${logFile}
 echo "###sys BLAS config###>>>" | tee -a ${logFile}
-find /usr/lib -maxdepth 1 -type l -iname "*libblas*"|xargs -I{} sh -c 'echo "{} =>" $(realpath {})' | tee -a ${logFile}
-find /usr/lib -maxdepth 1 -type l -iname "*liblapack*"|xargs -I{} sh -c 'echo "{} =>" $(realpath {})' | tee -a ${logFile}
+#find /usr/lib -maxdepth 1 -type l -iname "*libblas*"|xargs -I{} sh -c 'echo "{} =>" $(realpath {})' | tee -a ${logFile}
+#find /usr/lib -maxdepth 1 -type l -iname "*liblapack*"|xargs -I{} sh -c 'echo "{} =>" $(realpath {})' | tee -a ${logFile}
+find /usr/lib -maxdepth 1 -type l \( -iname "*libblas*" -or -iname "*liblapack*" \) -exec echo -n "{} =>" \; -exec realpath {} \; | tee -a ${logFile}
 echo "###sys BLAS config###<<<" | tee -a ${logFile}
 echo "###site.cfg###>>>" | tee -a ${logFile}
 python -c "import numpy; print numpy.__config__.show();" | tee -a ${logFile}
